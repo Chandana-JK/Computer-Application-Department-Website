@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Explore upcoming workshops, seminars, hackathons, coding competitions, and industry events from the Computer Applications Department at Jain University.">
+    <title>Computer Applications Department | Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header section is rendered dynamically by JavaScript -->
+    <header id="site-header" class="site-header"></header>
+
+    <main id="main-content">
+        <!-- Events page header -->
+        <section class="page-header" aria-labelledby="events-title">
+            <div class="container">
+                <h1 id="events-title">Events</h1>
+                <p>Academic and technical activities that encourage innovation, collaboration, and applied learning
+                    across the MCA Programme.</p>
+            </div>
+        </section>
+
+        <!-- Upcoming events section with event cards -->
+        <section class="page-section" aria-labelledby="events-list-title">
+            <div class="container">
+                <h2 id="events-list-title">Upcoming Events</h2>
+
+                <!-- Filter buttons for event categorisation -->
+                <div class="event-filter-controls" role="group" aria-label="Filter events by category">
+                    <button class="filter-btn filter-btn-active" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-btn" data-filter="workshops" aria-pressed="false">Workshops</button>
+                    <button class="filter-btn" data-filter="seminars" aria-pressed="false">Seminars</button>
+                    <button class="filter-btn" data-filter="competitions" aria-pressed="false">Competitions</button>
+                    <button class="filter-btn" data-filter="hackathons" aria-pressed="false">Hackathons</button>
+                    <button class="filter-btn" data-filter="industry" aria-pressed="false">Industry</button>
+                </div>
+
+                <!-- Event cards grid -->
+                <section class="event-grid" aria-labelledby="events-list-title">
+
+                    <!-- 1. Full Stack Development Workshop -->
+                    <article class="event-card" data-category="workshops" aria-labelledby="ev-fullstack-title">
+                        <img class="event-card-img" src="assets/images/Technical_workshop.png"
+                            alt="Students participating in a full stack web development workshop">
+                        <div class="event-card-body">
+                            <span class="event-badge">Workshop</span>
+                            <time class="event-date" datetime="2026-07-15">15 July 2026</time>
+                            <h3 id="ev-fullstack-title">Full Stack Development Workshop</h3>
+                            <p>A hands-on intensive session covering modern front-end frameworks, RESTful API design,
+                                and database integration. Students will build and deploy a complete web application
+                                under the guidance of faculty and industry mentors.</p>
+                        </div>
+                    </article>
+
+                    <!-- 2. Seminar on Cloud and Emerging Technologies -->
+                    <article class="event-card" data-category="seminars" aria-labelledby="ev-cloud-seminar-title">
+                        <img class="event-card-img" src="assets/images/Seminar_session.png"
+                            alt="Faculty-led seminar on cloud computing and emerging technologies">
+                        <div class="event-card-body">
+                            <span class="event-badge">Seminar</span>
+                            <time class="event-date" datetime="2026-08-02">02 August 2026</time>
+                            <h3 id="ev-cloud-seminar-title">Seminar on Cloud and Emerging Technologies</h3>
+                            <p>A faculty-led seminar introducing cloud service models, containerisation, DevOps
+                                practices, and cybersecurity fundamentals. Aimed at preparing students for certification
+                                pathways and career opportunities in cloud-first organisations.</p>
+                        </div>
+                    </article>
+
+                    <!-- 3. Code Sprint and Debugging Challenge -->
+                    <article class="event-card" data-category="competitions" aria-labelledby="ev-code-sprint-title">
+                        <img class="event-card-img" src="assets/images/code-sprint.png"
+                            alt="Students competing in a timed code sprint and debugging challenge">
+                        <div class="event-card-body">
+                            <span class="event-badge">Competition</span>
+                            <time class="event-date" datetime="2026-09-18">18 September 2026</time>
+                            <h3 id="ev-code-sprint-title">Code Sprint and Debugging Challenge</h3>
+                            <p>A timed intra-department competition testing logical reasoning, algorithmic thinking, and
+                                debugging under pressure. Participants will solve multi-tier problems across data
+                                structures, SQL, and object-oriented programming.</p>
+                        </div>
+                    </article>
+
+                    <!-- 4. Student Project Showcase -->
+                    <article class="event-card" data-category="workshops" aria-labelledby="ev-project-showcase-title">
+                        <img class="event-card-img" src="assets/images/Project_display.png"
+                            alt="Students presenting software projects to faculty and peers">
+                        <div class="event-card-body">
+                            <span class="event-badge">Workshop</span>
+                            <time class="event-date" datetime="2026-10-10">10 October 2026</time>
+                            <h3 id="ev-project-showcase-title">Student Project Showcase — Semester I</h3>
+                            <p>First-semester MCA students present web applications, database management systems, and
+                                software prototypes developed over the semester. Faculty panels evaluate technical
+                                depth, code quality, and presentation clarity.</p>
+                        </div>
+                    </article>
+
+                    <!-- 5. AI & Machine Learning Bootcamp -->
+                    <article class="event-card" data-category="workshops" aria-labelledby="ev-aiml-title">
+                        <img class="event-card-img" src="assets/images/event_ai_ml_bootcamp.jpg"
+                            alt="Students working on AI and machine learning exercises in a university computer lab">
+                        <div class="event-card-body">
+                            <span class="event-badge">Workshop</span>
+                            <time class="event-date" datetime="2026-11-05">05 November 2026</time>
+                            <h3 id="ev-aiml-title">AI & Machine Learning Bootcamp</h3>
+                            <p>A two-day intensive bootcamp covering supervised and unsupervised learning, neural
+                                network fundamentals, and model evaluation using Python and Scikit-learn. Students will
+                                work through real-world datasets in collaborative lab sessions guided by research
+                                faculty.</p>
+                        </div>
+                    </article>
+
+                    <!-- 6. Cybersecurity Awareness Seminar -->
+                    <article class="event-card" data-category="seminars" aria-labelledby="ev-cybersec-title">
+                        <img class="event-card-img" src="assets/images/event_cybersecurity_seminar.jpg"
+                            alt="University cybersecurity awareness seminar with students and an expert presenter">
+                        <div class="event-card-body">
+                            <span class="event-badge">Seminar</span>
+                            <time class="event-date" datetime="2026-11-22">22 November 2026</time>
+                            <h3 id="ev-cybersec-title">Cybersecurity Awareness Seminar</h3>
+                            <p>An expert-led seminar addressing current threat landscapes, ethical hacking principles,
+                                network security protocols, and data privacy regulation. Delivered in collaboration with
+                                a Bengaluru-based cybersecurity consultancy, the session includes live demonstrations of
+                                vulnerability assessment tools.</p>
+                        </div>
+                    </article>
+
+                    <!-- 7. JU InnoHack: Inter-College Hackathon -->
+                    <article class="event-card" data-category="hackathons" aria-labelledby="ev-hackathon-title">
+                        <img class="event-card-img" src="assets/images/event_hackathon.jpg"
+                            alt="Teams of students coding intensely during an inter-college hackathon event">
+                        <div class="event-card-body">
+                            <span class="event-badge">Hackathon</span>
+                            <time class="event-date" datetime="2026-12-13">13 December 2026</time>
+                            <h3 id="ev-hackathon-title">JU InnoHack: Inter-College Hackathon</h3>
+                            <p>A 24-hour innovation hackathon open to MCA and B.Sc. Computer Science students from
+                                Bengaluru institutions. Teams of three will ideate, prototype, and present solutions
+                                addressing real-world social, educational, or business challenges. Cash prizes and
+                                incubation mentorship await top teams.</p>
+                        </div>
+                    </article>
+
+                    <!-- 8. Industry Connect: Tech Leaders Roundtable -->
+                    <article class="event-card" data-category="industry" aria-labelledby="ev-industry-title">
+                        <img class="event-card-img" src="assets/images/event_industry_talk.jpg"
+                            alt="Industry professionals interacting with MCA students at a roundtable session">
+                        <div class="event-card-body">
+                            <span class="event-badge">Industry</span>
+                            <time class="event-date" datetime="2027-01-17">17 January 2027</time>
+                            <h3 id="ev-industry-title">Industry Connect: Tech Leaders Roundtable</h3>
+                            <p>Senior technologists and engineering managers from leading IT companies in Bengaluru join
+                                MCA students for an open discussion on hiring expectations, emerging tech stacks, career
+                                growth, and the transition from academic projects to production-grade software
+                                development.</p>
+                        </div>
+                    </article>
+
+                    <!-- 9. Data Science & Analytics Hands-On Workshop -->
+                    <article class="event-card" data-category="workshops" aria-labelledby="ev-datascience-title">
+                        <img class="event-card-img" src="assets/images/event_data_analytics.jpg"
+                            alt="Students analysing data visualisations and charts in a university data science workshop">
+                        <div class="event-card-body">
+                            <span class="event-badge">Workshop</span>
+                            <time class="event-date" datetime="2027-02-14">14 February 2027</time>
+                            <h3 id="ev-datascience-title">Data Science &amp; Analytics Hands-On Workshop</h3>
+                            <p>A practical workshop on data wrangling, exploratory data analysis, statistical modelling,
+                                and dashboard creation using Python, Pandas, and Tableau. Participants will work through
+                                a structured case study drawn from healthcare and e-commerce datasets.</p>
+                        </div>
+                    </article>
+
+                    <!-- 10. National Coding Championship Qualifier -->
+                    <article class="event-card" data-category="competitions" aria-labelledby="ev-ncc-title">
+                        <img class="event-card-img" src="assets/images/Coding_event.png"
+                            alt="MCA students competing in a national coding championship qualifier round">
+                        <div class="event-card-body">
+                            <span class="event-badge">Competition</span>
+                            <time class="event-date" datetime="2027-03-21">21 March 2027</time>
+                            <h3 id="ev-ncc-title">National Coding Championship — Qualifier Round</h3>
+                            <p>The department hosts the regional qualifier for a national competitive programming
+                                championship. Students compete across problem categories including dynamic programming,
+                                graph algorithms, and system design. Top performers advance to the national finals held
+                                in a metro campus.</p>
+                        </div>
+                    </article>
+
+                    <!-- 11. Cloud Architecture & DevOps Summit -->
+                    <article class="event-card" data-category="seminars" aria-labelledby="ev-devops-title">
+                        <img class="event-card-img" src="assets/images/event_cloud_devops.jpg"
+                            alt="Students at a cloud computing and DevOps technical summit">
+                        <div class="event-card-body">
+                            <span class="event-badge">Seminar</span>
+                            <time class="event-date" datetime="2027-04-05">05 April 2027</time>
+                            <h3 id="ev-devops-title">Cloud Architecture &amp; DevOps Summit</h3>
+                            <p>A full-day technical summit featuring sessions on microservices architecture, CI/CD
+                                pipeline design, Infrastructure as Code, and container orchestration with Kubernetes.
+                                Delivered by practising DevOps engineers and cloud architects, with live lab access
+                                through virtual sandbox environments.</p>
+                        </div>
+                    </article>
+
+                    <!-- 12. Career Launchpad: Placement Readiness Programme -->
+                    <article class="event-card" data-category="industry" aria-labelledby="ev-career-title">
+                        <img class="event-card-img" src="assets/images/Student_activities.png"
+                            alt="MCA students participating in placement preparation and career development activities">
+                        <div class="event-card-body">
+                            <span class="event-badge">Industry</span>
+                            <time class="event-date" datetime="2027-04-26">26 April 2027</time>
+                            <h3 id="ev-career-title">Career Launchpad: Placement Readiness Programme</h3>
+                            <p>A structured one-day programme including mock technical interviews, group discussion
+                                practice, resume review clinics, and aptitude coaching. HR professionals from
+                                Bengaluru's technology sector join faculty mentors to provide real-time feedback and
+                                career guidance to final-semester MCA students.</p>
+                        </div>
+                    </article>
+
+                    <!-- 13. MCA Annual Project Exhibition 2027 -->
+                    <article class="event-card" data-category="workshops" aria-labelledby="ev-annual-expo-title">
+                        <img class="event-card-img" src="assets/images/project-exhibition.png"
+                            alt="MCA students presenting their final year projects at the annual exhibition">
+                        <div class="event-card-body">
+                            <span class="event-badge">Workshop</span>
+                            <time class="event-date" datetime="2027-05-15">15 May 2027</time>
+                            <h3 id="ev-annual-expo-title">MCA Annual Project Exhibition 2027</h3>
+                            <p>The flagship end-of-year event where final-semester students demonstrate capstone
+                                projects to a panel of faculty, industry judges, and invited guests. Projects span AI
+                                applications, enterprise software solutions, mobile platforms, and data-driven systems
+                                developed through the full academic year.</p>
+                        </div>
+                    </article>
+
+                    <!-- 14. Research Symposium on Computing & Innovation -->
+                    <article class="event-card" data-category="seminars" aria-labelledby="ev-research-title">
+                        <img class="event-card-img" src="assets/images/research.png"
+                            alt="Faculty and students presenting research at a computing and innovation symposium">
+                        <div class="event-card-body">
+                            <span class="event-badge">Seminar</span>
+                            <time class="event-date" datetime="2027-06-28">28 June 2027</time>
+                            <h3 id="ev-research-title">Research Symposium on Computing &amp; Innovation</h3>
+                            <p>An annual academic symposium where MCA students and faculty present papers, literature
+                                reviews, and applied research findings in areas including artificial intelligence,
+                                internet of things, natural language processing, and software engineering. Open to
+                                external researchers and industry observers, with proceedings published in the
+                                department journal.</p>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section is rendered dynamically by JavaScript -->
+    <footer id="site-footer" class="site-footer"></footer>
+</body>
+
+</html>

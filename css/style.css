@@ -1,0 +1,2153 @@
+/* ==============================
+   Global variables and reset
+   ============================== */
+:root {
+    --color-primary: #12395f;
+    --color-secondary: #267085;
+    --color-accent: #f3b642;
+    --color-text: #1f2933;
+    --color-muted: #64748b;
+    --color-surface: #ffffff;
+    --color-background: #f6f8fb;
+    --color-border: #d9e2ec;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-soft: 0 10px 24px rgba(17, 24, 39, 0.08);
+    --shadow-hover: 0 16px 32px rgba(17, 24, 39, 0.12);
+    --transition: 220ms ease;
+}
+
+/* Base element reset to ensure consistent layout sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Global page layout and typography */
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-background);
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+img,
+input,
+textarea,
+button {
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition), background-color var(--transition), transform var(--transition);
+}
+
+.container {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    z-index: 10;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    color: #ffffff;
+    background: var(--color-primary);
+    transform: translateY(-140%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+main {
+    min-height: 70vh;
+    max-width: 100%;
+}
+
+/* ==============================
+   Header styles
+   ============================== */
+.site-header {
+    max-width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(18, 57, 95, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    position: relative;
+    z-index: 50;
+}
+
+.site-header::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--color-accent);
+    content: "";
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(20px, 3vw, 36px);
+    padding: 12px 0 14px;
+}
+
+.header-content > * {
+    max-width: 100%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    flex: 1 1 380px;
+    color: inherit;
+}
+
+.site-logo {
+    width: clamp(58px, 4.8vw, 66px);
+    height: clamp(58px, 4.8vw, 66px);
+    object-fit: cover;
+    border-radius: 50%;
+    flex-shrink: 0;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transition: transform 0.3s ease;
+}
+
+.brand:hover .site-logo,
+.brand:focus-visible .site-logo {
+    transform: scale(1.03);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.site-title {
+    margin: 0;
+    font-size: clamp(1.2rem, 1.65vw, 1.48rem);
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.12;
+    white-space: nowrap;
+}
+
+.site-subtitle {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.site-nav {
+    min-width: 0;
+    max-width: 100%;
+    flex: 0 0 auto;
+}
+
+.site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(14px, 1.8vw, 24px);
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 100%;
+}
+
+.site-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 8px 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.site-nav a::after {
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--color-accent);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.site-nav a:hover {
+    color: var(--color-secondary);
+    transform: translateY(-1px);
+}
+
+.site-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+.site-nav a.active {
+    color: var(--color-primary);
+    background: transparent;
+    box-shadow: none;
+}
+
+.site-nav a.active::after {
+    transform: scaleX(1);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* ==============================
+   Hero section styles
+   ============================== */
+.hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    /* Increased from 430px for a more cinematic, impactful banner */
+    min-height: 520px;
+    overflow: hidden;
+    padding: 96px 0;
+    color: #ffffff;
+    background: var(--color-primary);
+}
+
+.hero::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    /* Stronger left-side darkening so white text always reads clearly
+       regardless of which image is active */
+    background: linear-gradient(
+        90deg,
+        rgba(18, 57, 95, 0.94) 0%,
+        rgba(18, 57, 95, 0.70) 45%,
+        rgba(38, 112, 133, 0.38) 100%
+    );
+}
+
+/* Hero image slider container - ensures images are contained and clipped properly */
+.hero-slider {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Individual hero slide images */
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* cover fills the frame; 30% vertical keeps subjects (faces, screens)
+       in view rather than being cropped at the bottom */
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0;
+    /* Slight scale-in per slide gives a subtle Ken Burns feel */
+    transform: scale(1.04);
+    transition: opacity 0.9s ease-in-out, transform 6s ease-out;
+}
+
+/* Active slide fades in and slowly zooms to full size */
+.hero-slide-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Previous/next navigation buttons */
+.hero-nav-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    background: rgba(18, 57, 95, 0.4);
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-nav-btn:hover {
+    background: rgba(18, 57, 95, 0.7);
+    border-color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.hero-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.hero-prev {
+    left: 20px;
+}
+
+.hero-next {
+    right: 20px;
+}
+
+/* Slide indicator dots */
+.hero-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.hero-indicator {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-indicator:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-indicator-active {
+    background: #ffffff;
+    border-color: #ffffff;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    max-width: 760px;
+    margin: 0 0 16px;
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 750;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+}
+
+.hero p {
+    max-width: 660px;
+    margin: 0 0 28px;
+    font-size: 1.1rem;
+    color: #edf7fb;
+}
+
+/* ==============================
+   Button styles
+   ============================== */
+.button {
+    display: inline-block;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    color: #1f2933;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.button:hover {
+    background: #f6c45f;
+    box-shadow: 0 10px 20px rgba(17, 24, 39, 0.14);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.button.is-clicked {
+    transform: scale(0.98);
+}
+
+.button:focus-visible,
+.menu-toggle:focus-visible,
+.site-nav a:focus-visible,
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 3px solid rgba(243, 182, 66, 0.45);
+    outline-offset: 3px;
+}
+
+/* ==============================
+   Content section layout
+   ============================== */
+.intro-section,
+.highlights,
+.page-section {
+    padding: 56px 0;
+}
+
+.page-header {
+    padding: 48px 0;
+    color: #ffffff;
+    background: var(--color-primary);
+}
+
+.page-header h1 {
+    margin: 0 0 10px;
+    font-size: 2.25rem;
+    font-weight: 750;
+}
+
+.page-header p {
+    max-width: 720px;
+    margin: 0;
+    color: #d9e8f2;
+}
+
+.highlights h2,
+.page-section h2,
+.intro-section h2 {
+    margin: 0 0 16px;
+    color: var(--color-primary);
+}
+
+.intro-section p,
+.page-section p {
+    color: var(--color-muted);
+}
+
+.intro-grid,
+.content-layout,
+.contact-layout {
+    display: grid;
+    gap: 24px;
+}
+
+.intro-grid,
+.contact-layout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 1fr);
+    align-items: start;
+}
+
+.content-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-panel,
+.content-card,
+.event-card,
+.contact-details,
+.contact-form {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.info-panel h2,
+.content-card h3,
+.event-card h3,
+.contact-details h3,
+.contact-form h3 {
+    margin: 0 0 10px;
+    color: var(--color-secondary);
+}
+
+.info-panel ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--color-muted);
+}
+
+/* ==============================
+   Card and gallery styles
+   ============================== */
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.highlight-card,
+.gallery-item {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.highlight-card,
+.content-card,
+.event-card,
+.gallery-item,
+.info-panel,
+.contact-details,
+.contact-form {
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.highlight-card:hover,
+.content-card:hover,
+.event-card:hover,
+.gallery-item:hover,
+.info-panel:hover,
+.contact-details:hover,
+.contact-form:hover {
+    border-color: #b7cad8;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+}
+
+.highlight-card h3 {
+    margin: 0 0 10px;
+    color: var(--color-secondary);
+}
+
+.highlight-card p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+}
+
+.event-grid,
+.gallery-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Event filter button controls */
+.event-filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    align-items: center;
+}
+
+/* Individual filter button styling */
+.filter-btn {
+    padding: 10px 18px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+/* Hover state for filter buttons */
+.filter-btn:hover {
+    border-color: var(--color-accent);
+    background: rgba(243, 182, 66, 0.1);
+}
+
+/* Active filter button styling */
+.filter-btn-active {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #1f2933;
+}
+
+/* Active button hover state */
+.filter-btn-active:hover {
+    background: #f6c45f;
+}
+
+/* Event card: overflow hidden clips image; padding:0 lets image sit flush to top */
+.event-card {
+    overflow: hidden;
+    padding: 0;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Hidden event cards are removed from view with fade effect */
+.event-card.hidden {
+    display: none;
+    animation: fadeOut 0.4s ease-in-out;
+}
+
+/* Event card thumbnail — full-width, 16:9, zooms gently on hover */
+.event-card-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.45s ease;
+}
+
+.event-card:hover .event-card-img {
+    transform: scale(1.04);
+}
+
+/* Content wrapper — restores card padding below the image */
+.event-card-body {
+    padding: 18px 22px 22px;
+}
+
+/* Category pill badge */
+.event-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: rgba(18, 57, 95, 0.08);
+    color: var(--color-secondary);
+}
+
+/* Fade in animation for showing cards */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* ==============================
+   Dark mode / Light mode toggle
+   ============================== */
+.theme-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 7px 12px;
+    border: 1px solid rgba(18, 57, 95, 0.22);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-primary);
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: none;
+    transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+
+.theme-toggle-btn:hover {
+    border-color: rgba(243, 182, 66, 0.72);
+    color: var(--color-secondary);
+    transform: translateY(-1px);
+}
+
+.theme-toggle-btn span:first-child {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* ==============================
+   Dark mode styles
+   ============================== */
+body.dark-mode {
+    --color-text: #e8ecf1;
+    --color-background: #0f1419;
+    --color-surface: #1a1f2e;
+    --color-border: #2d3748;
+    --color-muted: #a0aec0;
+}
+
+body.dark-mode,
+body.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .site-header {
+    background: #111827;
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .site-title {
+    color: #f8fafc;
+}
+
+body.dark-mode .site-subtitle {
+    color: #a8b5c5;
+}
+
+body.dark-mode .site-nav a {
+    color: #d8e5f2;
+}
+
+body.dark-mode .site-nav a:hover {
+    color: #ffffff;
+    background: transparent;
+    transform: translateY(-1px);
+}
+
+body.dark-mode .site-nav a.active {
+    color: #ffffff;
+    background: transparent;
+    box-shadow: none;
+}
+
+body.dark-mode .theme-toggle-btn {
+    border-color: rgba(216, 229, 242, 0.2);
+    background: transparent;
+    color: #f8fafc;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+    border-color: rgba(243, 182, 66, 0.72);
+    color: #ffffff;
+}
+
+/* Separate hero and page-header for independent dark-mode control */
+body.dark-mode .hero {
+    /* Slightly lighter fallback so images have contrast during cross-fade transitions */
+    background: #0d1e30;
+}
+
+body.dark-mode .page-header {
+    background: linear-gradient(135deg, #1a2e4a 0%, #0f1f35 100%);
+}
+
+/* Dark mode overlay: dramatically reduced opacity so images stay visible.
+   Left edge dark enough for WCAG AA text contrast; right edge opens up
+   so the photo breathes and the Ken Burns zoom remains clearly perceptible. */
+body.dark-mode .hero::before {
+    background: linear-gradient(
+        105deg,
+        rgba(8, 18, 32, 0.88) 0%,
+        rgba(8, 18, 32, 0.58) 42%,
+        rgba(8, 18, 32, 0.16) 100%
+    );
+}
+
+/* Lift image brightness and saturation in dark mode so cross-fade transitions
+   and the subtle Ken Burns scale animation remain clearly noticeable */
+body.dark-mode .hero-slide {
+    filter: brightness(1.18) saturate(1.12);
+}
+
+/* Strengthen text shadow now the overlay is lighter — preserves WCAG contrast */
+body.dark-mode .hero h1 {
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65), 0 0 56px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .hero p {
+    color: #d8eaf5;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .info-panel,
+body.dark-mode .content-card,
+body.dark-mode .event-card,
+body.dark-mode .contact-details,
+body.dark-mode .contact-form,
+body.dark-mode .highlight-card,
+body.dark-mode .gallery-item {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .info-panel h2,
+body.dark-mode .content-card h3,
+body.dark-mode .event-card h3,
+body.dark-mode .contact-details h3,
+body.dark-mode .contact-form h3,
+body.dark-mode .highlight-card h3 {
+    color: #64b5f6;
+}
+
+body.dark-mode .info-panel:hover,
+body.dark-mode .content-card:hover,
+body.dark-mode .event-card:hover,
+body.dark-mode .gallery-item:hover,
+body.dark-mode .highlight-card:hover,
+body.dark-mode .contact-details:hover,
+body.dark-mode .contact-form:hover {
+    border-color: #42a5f5;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .gallery-item figcaption {
+    background: var(--color-surface);
+    color: #64b5f6;
+}
+
+body.dark-mode .gallery-item img {
+    background: #0a0e14;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #e8ecf1;
+}
+
+body.dark-mode .highlights h2,
+body.dark-mode .page-section h2,
+body.dark-mode .intro-section h2 {
+    color: #64b5f6;
+}
+
+body.dark-mode .filter-btn {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: #64b5f6;
+}
+
+body.dark-mode .filter-btn:hover {
+    border-color: #f3b642;
+    background: rgba(243, 182, 66, 0.15);
+}
+
+body.dark-mode .filter-btn-active {
+    background: #f3b642;
+    border-color: #f3b642;
+    color: #0f1419;
+}
+
+body.dark-mode .filter-btn-active:hover {
+    background: #f6c45f;
+}
+
+body.dark-mode .event-badge {
+    background: rgba(100, 181, 246, 0.1);
+    color: #64b5f6;
+}
+
+body.dark-mode .button {
+    background: #f3b642;
+    color: #0f1419;
+}
+
+body.dark-mode .button:hover {
+    background: #f6c45f;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+    background: #0f1419;
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+    border-color: #f3b642;
+    box-shadow: 0 0 0 4px rgba(243, 182, 66, 0.15);
+}
+
+body.dark-mode .site-footer {
+    background: #060c14;
+    border-top-color: #f3b642;
+}
+
+body.dark-mode .footer-logo-wrap {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .footer-dept-name {
+    color: #e8f0f7;
+}
+
+body.dark-mode .footer-tagline {
+    color: #6d8fa8;
+}
+
+body.dark-mode .footer-location-line {
+    color: #5a7a96;
+}
+
+body.dark-mode .footer-nav a {
+    color: #9ab8d0;
+}
+
+body.dark-mode .footer-nav a:hover {
+    color: #f3b642;
+}
+
+body.dark-mode .footer-contact-item {
+    color: #9ab8d0;
+}
+
+body.dark-mode .footer-contact-item a {
+    color: #9ab8d0;
+}
+
+body.dark-mode .footer-contact-item a:hover {
+    color: #f3b642;
+}
+
+body.dark-mode .footer-bottom {
+    background: rgba(0, 0, 0, 0.35);
+    border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .footer-copyright {
+    color: #4e6a82;
+}
+
+body.dark-mode .button:focus-visible,
+body.dark-mode .theme-toggle-btn:focus-visible,
+body.dark-mode .menu-toggle:focus-visible,
+body.dark-mode .site-nav a:focus-visible,
+body.dark-mode .form-group input:focus-visible,
+body.dark-mode .form-group textarea:focus-visible {
+    outline: 3px solid rgba(100, 181, 246, 0.5);
+    outline-offset: 3px;
+}
+
+body.dark-mode .menu-toggle {
+    background: #1a2e4a;
+    color: #ffffff;
+}
+
+body.dark-mode .menu-toggle:hover {
+    background: #2a3e5a;
+}
+
+body.dark-mode .site-nav {
+    background: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
+}
+
+body.dark-mode .site-nav a:hover {
+    background-color: transparent;
+}
+
+body.dark-mode .site-nav a.active {
+    border-left-color: #f3b642;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+
+
+.event-date {
+    display: block;
+    margin: 0 0 8px;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.event-card p:last-child,
+.content-card p:last-child,
+.contact-details p:last-child {
+    margin-bottom: 0;
+}
+
+.gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    flex: 1 0 auto;
+    object-fit: cover;
+    object-position: center;
+    background: #d9e2ec;
+    transition: filter 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover img {
+    filter: brightness(0.96) saturate(1.04);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item figcaption {
+    min-height: 52px;
+    padding: 14px 16px;
+    color: var(--color-primary);
+    font-weight: 700;
+    background: var(--color-surface);
+}
+
+/* ==============================
+   Contact form styles
+   ============================== */
+.contact-form {
+    display: grid;
+    gap: 18px;
+}
+
+.contact-form fieldset {
+    display: grid;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.contact-form legend {
+    margin: 0 0 10px;
+    padding: 0;
+    color: var(--color-secondary);
+    font-size: 1.17rem;
+    font-weight: 700;
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+}
+
+.form-group label {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    /* WCAG 2.5.5 — minimum 44px touch target on mobile */
+    min-height: 44px;
+    border: 1px solid #c8d4df;
+    border-radius: var(--radius-sm);
+    font: inherit;
+    color: var(--color-text);
+    background: #ffffff;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(243, 182, 66, 0.18);
+}
+
+.form-group input[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+    border-color: #dc2626;
+}
+
+.form-status {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+.form-status.success {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.form-status.error {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+/* ==============================
+   Footer styles — Premium University Redesign
+   ============================== */
+.site-footer {
+    max-width: 100%;
+    color: #e8f0f7;
+    /* Deep navy — premium academic dark base */
+    background: #0d2137;
+    border-top: 3px solid var(--color-accent);
+}
+
+/* ── Main footer body ─────────────────────────── */
+.footer-main {
+    padding: 52px 0 44px;
+}
+
+/* Asymmetric 3-column: branding wider, links + contact equal */
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1.1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+}
+
+/* Base column */
+.footer-column {
+    min-width: 0;
+}
+
+/* ── Column headings (col 2 & 3 only) ─────────── */
+.footer-col-heading {
+    margin: 0 0 18px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: var(--color-accent);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Column 1 — Branding ──────────────────────── */
+.footer-brand-col {
+    /* Slightly more breathing room on the right */
+    padding-right: 16px;
+}
+
+/* Clickable brand block: logo + text stack */
+.footer-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 20px;
+}
+
+.footer-brand-link:hover .footer-logo {
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+/* Logo circle — white fill so the logo image renders naturally on dark footer */
+.footer-logo-wrap {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* White background lets the logo display exactly as in the header */
+    background: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.footer-brand-link:hover .footer-logo-wrap {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(243, 182, 66, 0.25);
+}
+
+.footer-logo {
+    width: 52px;
+    height: 52px;
+    /* contain keeps full logo visible without cropping */
+    object-fit: contain;
+    border-radius: 0;
+    /* No filter — logo displays in its natural colours */
+    opacity: 1;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+/* Brand text stack */
+.footer-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.footer-dept-name {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f0f6fb;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.footer-univ-name {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+}
+
+/* Tagline — italic, muted, academic */
+.footer-tagline {
+    font-size: 0.875rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: #8fafc8;
+    margin: 0 0 18px;
+}
+
+/* Subtle horizontal rule separating tagline from location */
+.footer-brand-rule {
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+    border-radius: 2px;
+    margin-bottom: 14px;
+}
+
+/* Location line below rule */
+.footer-location-line {
+    font-size: 0.82rem;
+    color: #7a9ab8;
+    margin: 0;
+    letter-spacing: 0.01em;
+}
+
+/* ── Column 2 — Quick Links ───────────────────── */
+.footer-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-nav li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-nav li:last-child {
+    border-bottom: none;
+}
+
+.footer-nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    color: #c2d8eb;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition), padding-left var(--transition);
+}
+
+.footer-nav a::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.footer-nav a:hover {
+    color: #ffffff;
+    padding-left: 4px;
+}
+
+.footer-nav a:hover::before {
+    opacity: 1;
+    transform: scale(1.3);
+}
+
+/* ── Column 3 — Contact ───────────────────────── */
+.footer-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #c2d8eb;
+}
+
+.footer-contact-item:last-child {
+    border-bottom: none;
+}
+
+.footer-contact-icon {
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    margin-top: 1px;
+    opacity: 0.75;
+}
+
+.footer-contact-item a {
+    color: #c2d8eb;
+    word-break: break-word;
+    transition: color var(--transition);
+}
+
+.footer-contact-item a:hover {
+    color: var(--color-accent);
+}
+
+.footer-contact-item span:not(.footer-contact-icon) {
+    color: #a0b8ce;
+}
+
+/* ── Footer bottom bar ────────────────────────── */
+.footer-bottom {
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-copyright {
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #6a8ea8;
+    letter-spacing: 0.01em;
+}
+
+/* Accessibility: reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* ==============================
+   Tablet: max-width 1024px
+   ============================== */
+@media (max-width: 1024px) {
+    .container {
+        width: min(920px, calc(100% - 32px));
+    }
+
+    .header-content {
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 18px;
+    }
+
+    .brand {
+        gap: 12px;
+    }
+
+    .site-logo {
+        width: clamp(54px, 6vw, 62px);
+        height: clamp(54px, 6vw, 62px);
+    }
+
+    .site-title {
+        font-size: 1.2rem;
+        white-space: normal;
+    }
+
+    .site-subtitle {
+        font-size: 0.8rem;
+        white-space: normal;
+    }
+
+    .site-nav {
+        flex: 0 1 auto;
+    }
+
+    .site-nav ul {
+        gap: 14px;
+        justify-content: flex-end;
+    }
+
+    .site-nav a,
+    .theme-toggle-btn {
+        font-size: 0.84rem;
+    }
+
+    .hero {
+        /* Scaled from 520px desktop proportionally */
+        min-height: 440px;
+        padding: 72px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+
+    .hero-nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+
+    .hero-prev {
+        left: 16px;
+    }
+
+    .hero-next {
+        right: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 2.1rem;
+    }
+
+    .content-layout,
+    .gallery-grid,
+    .highlight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .content-card:first-child {
+        grid-column: 1 / -1;
+    }
+
+    /* Tablet footer: 2-column — branding left, links+contact stacked right */
+    .footer-content {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 36px;
+    }
+
+    /* Contact column drops below links on the right — span both rows */
+    .footer-contact-col {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .footer-links-col {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .footer-brand-col {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        padding-right: 12px;
+    }
+}
+
+/* ==============================
+   Mobile: max-width 768px
+   ============================== */
+@media (max-width: 768px) {
+    body {
+        font-size: 0.98rem;
+    }
+
+    .container {
+        width: calc(100% - 28px);
+    }
+
+    .header-content {
+        /* Row 1: brand + menu-toggle. Row 2: nav (when open). */
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 12px; /* gap between brand and menu-toggle on row 1 */
+        row-gap: 0;       /* no gap above the nav row — collapsed nav leaves no phantom space */
+        padding: 14px 0;
+        position: relative;
+    }
+
+    .brand {
+        flex: 1 1 calc(100% - 90px);
+        gap: 12px;
+    }
+
+    .site-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .site-title {
+        font-size: 1.08rem;
+        white-space: normal;
+        letter-spacing: 0;
+    }
+
+    .site-subtitle {
+        font-size: 0.78rem;
+        white-space: normal;
+    }
+
+    .site-nav {
+        /* ─────────────────────────────────────────────────────────
+           IN-FLOW approach: nav is a flex item on its own row inside
+           the sticky header.  Opening the menu EXPANDS the header
+           height, physically pushing the hero section down.
+
+           This eliminates every overlay, z-index, and transparency
+           issue in one change — no position:absolute needed.
+           ───────────────────────────────────────────────────────── */
+        position: static;
+        /* Force nav onto its own flex row, full viewport width */
+        flex: 0 0 calc(100% + 28px); /* 100% of container + 2×14px gutter = viewport */
+        max-width: none;             /* Override desktop max-width: 100% which prevents expansion */
+        margin-left: -14px;          /* shift left to align with viewport edge */
+        order: 10;                   /* renders after brand (order 0) and toggle (order 2) */
+        /* Collapse / expand */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 320ms ease, opacity 280ms ease;
+        /* Always-opaque solid background */
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        border-radius: 0;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .site-nav.nav-open {
+        max-height: 400px;
+        opacity: 1;
+    }
+
+    .site-nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        width: 100%;
+    }
+
+    .site-nav li {
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .site-nav li:last-child {
+        border-bottom: none;
+    }
+
+    .site-nav a {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+        text-align: left;
+        white-space: normal;
+        border-left: 4px solid transparent;
+        transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+        font-size: 1.05rem;
+    }
+
+    /* Style the injected theme toggle button to match nav links */
+    .theme-toggle-btn {
+        width: 100%;
+        padding: 16px 20px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: transparent;
+        border: none;
+        color: var(--color-primary);
+        font-family: inherit;
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        border-left: 4px solid transparent;
+        border-radius: 0;
+        transition: background-color var(--transition), color var(--transition);
+    }
+
+    .site-nav a::after {
+        display: none;
+    }
+
+    .site-nav a:hover,
+    .theme-toggle-btn:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        color: var(--color-secondary);
+    }
+
+    .site-nav a.active {
+        border-left-color: var(--color-accent);
+        color: var(--color-primary);
+        background-color: rgba(0, 0, 0, 0.03);
+        box-shadow: none;
+    }
+
+    body.dark-mode .site-nav a:hover,
+    body.dark-mode .site-nav a.active,
+    body.dark-mode .theme-toggle-btn:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+
+    body.dark-mode .site-nav li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    body.dark-mode .site-nav li:last-child {
+        border-bottom: none;
+    }
+
+    body.dark-mode .theme-toggle-btn {
+        color: #e8f0f7;
+    }
+
+    /* Override the global dark-mode rule that sets .site-nav background:transparent.
+       Without this, the dropdown panel is invisible (hero shows straight through).
+       Specificity matches (0,2,1) but this declaration comes later in the file → wins. */
+    body.dark-mode .site-nav {
+        background: var(--color-surface);            /* #1a1f2e — fully opaque */
+        border-top-color: rgba(255, 255, 255, 0.1);
+        border-bottom-color: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .menu-toggle {
+        display: block;
+        order: 2;
+        padding: 8px 12px;
+        border: none;
+        border-radius: var(--radius-sm);
+        color: #ffffff;
+        background: #1e3a5f;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+        transition: background-color var(--transition), transform var(--transition);
+    }
+
+    .menu-toggle:hover {
+        background: var(--color-primary);
+    }
+
+    .menu-toggle:active {
+        transform: scale(0.98);
+    }
+
+    .intro-grid,
+    .content-layout,
+    .contact-layout,
+    .event-grid,
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Gallery stays 2 columns at 480–768px for better visual rhythm */
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .content-card:first-child {
+        grid-column: auto;
+    }
+
+    .hero {
+        min-height: 420px;
+        /* Extra bottom padding creates a clear zone for the repositioned controls */
+        padding: 52px 0 76px;
+    }
+
+    .hero::before {
+        /* On mobile, keep gradient stronger on top so text overlay reads clearly */
+        background: linear-gradient(160deg, rgba(18, 57, 95, 0.96) 0%, rgba(18, 57, 95, 0.75) 60%, rgba(18, 57, 95, 0.5) 100%);
+    }
+
+    .hero-slide {
+        /* Keep 30% vertical so subjects still visible on portrait screens */
+        object-position: center 30%;
+    }
+
+    .hero h1 {
+        font-size: 2.15rem;
+    }
+
+    /* Move carousel controls to bottom so they never overlap heading/text/CTA */
+    .hero-nav-btn {
+        top: auto;
+        bottom: 16px;
+        transform: none;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .hero-nav-btn:hover {
+        transform: scale(1.06);
+    }
+
+    .hero-nav-btn:active {
+        transform: scale(0.94);
+    }
+
+    .hero-prev {
+        left: 12px;
+    }
+
+    .hero-next {
+        right: 12px;
+    }
+
+    .hero-indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Align indicators vertically with the nav button centre (button bottom:16px + height:40px/2 = 36px) */
+    .hero-indicators {
+        bottom: 24px;
+        gap: 8px;
+    }
+
+    .hero p,
+    .page-header p,
+    .intro-section p,
+    .page-section p {
+        font-size: 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .intro-section,
+    .highlights,
+    .page-section {
+        padding: 44px 0;
+    }
+
+    .page-header {
+        padding: 40px 0;
+    }
+
+    .highlights h2,
+    .page-section h2,
+    .intro-section h2 {
+        font-size: 1.45rem;
+    }
+
+    .info-panel,
+    .content-card,
+    .contact-details,
+    .contact-form,
+    .highlight-card {
+        padding: 20px;
+    }
+
+    /* Event card body gets responsive padding — .event-card itself stays padding:0 for flush image */
+    .event-card-body {
+        padding: 16px 20px 20px;
+    }
+
+    /* Dark mode hero overlay for mobile portrait — stronger left anchor keeps text readable */
+    body.dark-mode .hero::before {
+        background: linear-gradient(
+            160deg,
+            rgba(8, 18, 32, 0.92) 0%,
+            rgba(8, 18, 32, 0.68) 60%,
+            rgba(8, 18, 32, 0.30) 100%
+        );
+    }
+
+    /* Mobile footer: single column stack */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .footer-column {
+        padding: 16px 0; /* Reduced from 24px */
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* First column (branding) has no top border */
+    .footer-column:first-child {
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .footer-brand-col {
+        padding-right: 0;
+    }
+
+    /* Reset explicit grid-column and grid-row placements */
+    .footer-brand-col,
+    .footer-links-col,
+    .footer-contact-col {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    /* Tighter branding layout */
+    .footer-brand-link {
+        margin-bottom: 12px;
+    }
+
+    .footer-logo-wrap {
+        width: 44px; /* Reduced from 52px */
+        height: 44px;
+    }
+
+    .footer-logo {
+        width: 32px; /* Reduced from 38px */
+        height: 32px;
+    }
+
+    .footer-brand-text {
+        gap: 2px;
+    }
+
+    .footer-dept-name {
+        font-size: 0.95rem;
+    }
+
+    .footer-univ-name {
+        font-size: 0.75rem;
+    }
+
+    .footer-tagline {
+        margin: 0 0 10px; /* Reduced from 18px */
+        line-height: 1.4; /* Tighter line-height */
+        font-size: 0.8rem;
+    }
+
+    .footer-brand-rule {
+        margin-bottom: 10px; /* Reduced from 14px */
+    }
+
+    .footer-location-line {
+        font-size: 0.78rem;
+    }
+
+    .footer-col-heading {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+    }
+
+    /* Quick links: Compact 2-column grid */
+    .footer-nav ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px 16px;
+    }
+
+    .footer-nav li {
+        width: 100%;
+        border-bottom: none;
+    }
+
+    .footer-nav a {
+        padding: 4px 0; /* Reduced from 8px desktop default */
+        font-size: 0.82rem;
+    }
+
+    /* Contact items: Tighter spacing */
+    .footer-contact-item {
+        padding: 6px 0; /* Reduced from 9px */
+        gap: 8px; /* Reduced from 10px */
+        font-size: 0.82rem;
+        line-height: 1.35;
+    }
+
+    .footer-contact-icon {
+        font-size: 0.88rem;
+    }
+
+    /* Copyright wraps cleanly */
+    .footer-copyright {
+        font-size: 0.75rem;
+    }
+}
+
+/* Small mobile refinement */
+@media (max-width: 520px) {
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .header-content {
+        padding: 12px 0;
+        gap: 10px;
+    }
+
+    .site-logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .site-title {
+        font-size: 1rem;
+        letter-spacing: 0;
+    }
+
+    .site-subtitle {
+        font-size: 0.72rem;
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+    }
+
+    .site-nav a {
+        border-radius: 0;
+        padding: 10px 16px;
+        width: 100%;
+        text-align: left;
+    }
+
+    .hero {
+        min-height: 370px;
+        padding: 44px 0 70px;
+    }
+
+    .hero h1 {
+        font-size: 1.9rem;
+    }
+
+    /* Bottom-positioned controls inherit from 768px; only update bottom offset */
+    .hero-nav-btn {
+        bottom: 14px;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .hero-prev {
+        left: 10px;
+    }
+
+    .hero-next {
+        right: 10px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .intro-section,
+    .highlights,
+    .page-section {
+        padding: 40px 0;
+    }
+
+    .page-header {
+        padding: 36px 0;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .info-panel,
+    .content-card,
+    .contact-details,
+    .contact-form,
+    .highlight-card {
+        padding: 18px;
+    }
+
+    /* Event card body at small screens — maintains visual hierarchy below image */
+    .event-card-body {
+        padding: 14px 18px 18px;
+    }
+
+    /* Gallery collapses to 1 column below 520px */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    /* Compact filter buttons for 6-category wrap at small screens */
+    .event-filter-controls {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .filter-btn {
+        padding: 8px 14px;
+        font-size: 0.88rem;
+        min-height: 40px;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
+/* ==============================
+   Extra small: max-width 375px
+   ============================== */
+@media (max-width: 375px) {
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    /* Hero: tighter on smallest phones, still needs room for bottom controls */
+    .hero {
+        min-height: 340px;
+        padding: 36px 0 64px;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero p {
+        font-size: 0.92rem;
+    }
+
+    /* Page headers */
+    .page-header {
+        padding: 28px 0;
+    }
+
+    .page-header h1 {
+        font-size: 1.55rem;
+    }
+
+    /* Event filter: tightest compact for 320px */
+    .filter-btn {
+        padding: 7px 11px;
+        font-size: 0.84rem;
+        min-height: 38px;
+    }
+
+    .event-filter-controls {
+        gap: 6px;
+    }
+
+    /* Footer nav: 1 column at 375px and below */
+    .footer-nav li {
+        width: 100%;
+    }
+
+    .footer-nav ul {
+        gap: 0;
+    }
+
+    /* Footer contact: smaller text to prevent overflow */
+    .footer-contact-item {
+        font-size: 0.8rem;
+    }
+
+    .footer-dept-name {
+        font-size: 0.88rem;
+    }
+
+    .footer-tagline {
+        font-size: 0.8rem;
+    }
+
+    /* Sections: tightest vertical rhythm */
+    .intro-section,
+    .highlights,
+    .page-section {
+        padding: 32px 0;
+    }
+}

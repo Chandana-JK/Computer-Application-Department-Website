@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of the Computer Applications Department.">
+    <title>Computer Applications Department | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Header section is rendered dynamically by JavaScript -->
+    <header id="site-header" class="site-header"></header>
+
+    <main id="main-content">
+        <!-- Hero section: department introduction with automatic image slider -->
+        <section class="hero" aria-labelledby="home-title" role="region" aria-label="Hero image slider">
+            <!-- Image slider container -->
+            <div class="hero-slider">
+                <img class="hero-slide hero-slide-active" src="assets/images/hero-university.png" alt="Modern university campus learning environment" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Computer_lab.png" alt="Computer laboratory with workstations" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Seminar_session.png" alt="Educational seminar session" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Technical_workshop.png" alt="Technical workshop activity" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Project_display.png" alt="Student project showcase" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Student_activities.png" alt="Student activities and engagement" aria-hidden="true">
+                <img class="hero-slide" src="assets/images/Coding_event.png" alt="Coding competition event" aria-hidden="true">
+            </div>
+
+            <!-- Previous slide button -->
+            <button class="hero-nav-btn hero-prev" aria-label="Previous slide" aria-controls="home-title">
+                <span aria-hidden="true">❮</span>
+            </button>
+
+            <!-- Next slide button -->
+            <button class="hero-nav-btn hero-next" aria-label="Next slide" aria-controls="home-title">
+                <span aria-hidden="true">❯</span>
+            </button>
+
+            <!-- Slide indicators (optional) -->
+            <div class="hero-indicators" role="group" aria-label="Slide indicators">
+                <button class="hero-indicator hero-indicator-active" aria-label="Slide 1" aria-current="true"></button>
+                <button class="hero-indicator" aria-label="Slide 2"></button>
+                <button class="hero-indicator" aria-label="Slide 3"></button>
+                <button class="hero-indicator" aria-label="Slide 4"></button>
+                <button class="hero-indicator" aria-label="Slide 5"></button>
+                <button class="hero-indicator" aria-label="Slide 6"></button>
+                <button class="hero-indicator" aria-label="Slide 7"></button>
+            </div>
+
+            <!-- Text overlay content (always visible on top) -->
+            <div class="container">
+                <h1 id="home-title">Welcome to the Department of Computer Applications</h1>
+                <p>
+                    A learning community focused on computing, application development,
+                    innovation, and professional readiness.
+                </p>
+                <a href="about.html" class="button">Explore Department</a>
+            </div>
+        </section>
+
+        <!-- Introduction section: department objectives and learning outcomes -->
+        <section class="intro-section" aria-labelledby="intro-title">
+            <div class="container intro-grid">
+                <article class="intro-content">
+                    <h2 id="intro-title">Building Practical Technology Skills</h2>
+                    <p>
+                        The Department of Computer Applications delivers industry-oriented education that equips students with the practical skills and modern technologies essential for career success in today's digital economy. Our comprehensive curriculum integrates full-stack development, cloud infrastructure, data management, and software architecture with hands-on project experience, ensuring graduates possess demonstrated competence in contemporary frameworks and enterprise-scale solutions.
+                    </p>
+                    <p>
+                        Through rigorous laboratory work, industry partnerships, technical seminars, and collaborative capstone projects, students develop both technical expertise and professional acumen—the dual foundation required to drive innovation and lead technology initiatives across corporate, startup, and research environments.
+                    </p>
+                </article>
+
+                <!-- Sidebar panel: main focus areas of the program -->
+                <aside class="info-panel" aria-labelledby="focus-title">
+                    <h2 id="focus-title">Focus Areas</h2>
+                    <ul>
+                        <li>Programming fundamentals</li>
+                        <li>Full-stack web development</li>
+                        <li>Database and cloud fundamentals</li>
+                        <li>Project-based learning and innovation</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Highlights section: showcase department strengths -->
+        <section class="highlights" aria-labelledby="highlights-title">
+            <div class="container">
+                <h2 id="highlights-title">Department Highlights</h2>
+                <section class="highlight-grid" aria-labelledby="highlights-title">
+                    <article class="highlight-card" aria-labelledby="academic-title">
+                        <h3 id="academic-title">Academic Excellence</h3>
+                        <p>Structured learning supported by labs, assignments, mentoring, and continuous assessment.</p>
+                    </article>
+
+                    <article class="highlight-card" aria-labelledby="technical-title">
+                        <h3 id="technical-title">Technical Events</h3>
+                        <p>Workshops, seminars, and coding activities that connect classroom learning with practice.</p>
+                    </article>
+
+                    <article class="highlight-card" aria-labelledby="growth-title">
+                        <h3 id="growth-title">Student Growth</h3>
+                        <p>Team projects and presentations that strengthen communication, leadership, and career skills.</p>
+                    </article>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section is rendered dynamically by JavaScript -->
+    <footer id="site-footer" class="site-footer"></footer>
+</body>
+</html>
